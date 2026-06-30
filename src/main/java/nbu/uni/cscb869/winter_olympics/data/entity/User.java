@@ -1,25 +1,26 @@
 package nbu.uni.cscb869.winter_olympics.data.entity;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.NoArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
 
-@AllArgsConstructor
-@NoArgsConstructor
+import java.util.Set;
+
+@Entity
+@Table(name = "user")
 @Getter
 @Setter
-@Entity
-@Table(name = "users")
-public class User extends BaseEntity{
+public class User implements UserDetails {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String username;
     private String password;
-
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    private Set<Role> authorities;
+    private boolean accountNonExpired;
+    private boolean accountNonLocked;
+    private boolean credentialsNonExpired;
+    private boolean enabled;
 }

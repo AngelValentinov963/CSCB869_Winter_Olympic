@@ -1,21 +1,36 @@
 package nbu.uni.cscb869.winter_olympics.data.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
+import lombok.*;
+
 import java.time.LocalDate;
 
+
 @Entity
+@Table(name = "athlete")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Athlete extends BaseEntity{
+@Builder
+public class Athlete extends BaseEntity {
 
-    private String name;
+    @NotBlank
+    private String firstName;
+
+    @NotBlank
+    private String lastName;
+
+    @NotBlank
     private String country;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
+    @Past
     private LocalDate birthDate;
+
+
 }

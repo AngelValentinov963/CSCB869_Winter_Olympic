@@ -3,10 +3,16 @@ package nbu.uni.cscb869.winter_olympics.data.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Participation extends BaseEntity{
 
     @ManyToOne
@@ -25,13 +31,5 @@ public class Participation extends BaseEntity{
 
     private boolean didNotFinish = false;
 
-    // Calculated field logic
-    public Double getTotalTime() {
-        if (competition instanceof SlalomCompetition) {
-            return (firstRunTime != null ? firstRunTime : 0) + (secondRunTime != null ? secondRunTime : 0);
-        } else if (competition instanceof Biathlon) {
-            return skiingTime + (misses * ((Biathlon) competition).getPenaltySecondsPerMiss());
-        }
-        return 0.0;
-    }
+
 }
