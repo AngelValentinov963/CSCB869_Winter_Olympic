@@ -1,8 +1,8 @@
 package nbu.uni.cscb869.winter_olympics.service;
 
-import nbu.uni.cscb869.winter_olympics.dto.SlalomFirstRunDTO;
-import nbu.uni.cscb869.winter_olympics.dto.SlalomResultDTO;
-import nbu.uni.cscb869.winter_olympics.dto.SlalomSecondRunDTO;
+import nbu.uni.cscb869.winter_olympics.dto.SlalomDTO.SlalomFirstRunDTO;
+import nbu.uni.cscb869.winter_olympics.dto.SlalomDTO.SlalomResultDTO;
+import nbu.uni.cscb869.winter_olympics.dto.SlalomDTO.SlalomSecondRunDTO;
 
 import java.util.List;
 

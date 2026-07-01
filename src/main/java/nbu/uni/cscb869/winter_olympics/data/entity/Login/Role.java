@@ -1,7 +1,6 @@
-package nbu.uni.cscb869.winter_olympics.data.entity;
+package nbu.uni.cscb869.winter_olympics.data.entity.Login;
 
 import jakarta.persistence.*;
-import nbu.uni.cscb869.winter_olympics.data.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Set;

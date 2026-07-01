@@ -1,4 +1,4 @@
-package nbu.uni.cscb869.winter_olympics.data.entity;
+package nbu.uni.cscb869.winter_olympics.data.entity.Result;
 
 import jakarta.persistence.Entity;
 

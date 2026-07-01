@@ -1,4 +1,4 @@
-package nbu.uni.cscb869.winter_olympics.dto;
+package nbu.uni.cscb869.winter_olympics.dto.SlalomDTO;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

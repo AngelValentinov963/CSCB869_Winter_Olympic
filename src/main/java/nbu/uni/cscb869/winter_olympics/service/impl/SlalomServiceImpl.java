@@ -2,15 +2,14 @@ package nbu.uni.cscb869.winter_olympics.service.impl;
 
 import nbu.uni.cscb869.winter_olympics.data.entity.Competition.Competition;
 import nbu.uni.cscb869.winter_olympics.data.entity.Competition.SlalomCompetition;
-import nbu.uni.cscb869.winter_olympics.data.entity.Result;
-import nbu.uni.cscb869.winter_olympics.data.entity.SlalomResult;
+import nbu.uni.cscb869.winter_olympics.data.entity.Result.SlalomResult;
 import nbu.uni.cscb869.winter_olympics.data.repository.AthleteRepository;
 import nbu.uni.cscb869.winter_olympics.data.repository.CompetitionRepository;
 import nbu.uni.cscb869.winter_olympics.data.repository.ResultRepository;
 import nbu.uni.cscb869.winter_olympics.data.repository.SlalomResultRepository;
-import nbu.uni.cscb869.winter_olympics.dto.SlalomFirstRunDTO;
-import nbu.uni.cscb869.winter_olympics.dto.SlalomResultDTO;
-import nbu.uni.cscb869.winter_olympics.dto.SlalomSecondRunDTO;
+import nbu.uni.cscb869.winter_olympics.dto.SlalomDTO.SlalomFirstRunDTO;
+import nbu.uni.cscb869.winter_olympics.dto.SlalomDTO.SlalomResultDTO;
+import nbu.uni.cscb869.winter_olympics.dto.SlalomDTO.SlalomSecondRunDTO;
 import nbu.uni.cscb869.winter_olympics.service.SlalomService;
 
 import java.util.Comparator;
@@ -48,19 +47,21 @@ public class SlalomServiceImpl implements SlalomService {
 
     @Override
     public List<Long> getSecondRunStartOrder(Long competitionId) {
+        Competition baseCompetition = competitionRepository.findById(competitionId)
+                .orElseThrow(() -> new RuntimeException("Competition not found"));
 
-        SlalomCompetition competition =
-                (SlalomCompetition) competitionRepository.findById(competitionId)
-                        .orElseThrow();
+        if (!(baseCompetition instanceof SlalomCompetition competition)) {
+            throw new IllegalArgumentException("The requested competition is not a Slalom competition.");
+        }
 
-        int limit = competition.getFinalistCount();
+        int limit = competition.getFinalistCounts();
 
         return slalomResultRepository.findByCompetitionId(competitionId)
                 .stream()
                 .filter(r -> r.getFirstRunTime() != null)
-                .sorted(Comparator.comparing(SlalomResult::getFirstRunTime)) // best first run
+                .sorted(Comparator.comparing(SlalomResult::getFirstRunTime))
                 .limit(limit)
-                .sorted(Comparator.comparing(SlalomResult::getFirstRunTime).reversed()) // slowest first
+                .sorted(Comparator.comparing(SlalomResult::getFirstRunTime).reversed())
                 .map(r -> r.getAthlete().getId())
                 .toList();
     }
@@ -90,7 +91,8 @@ public class SlalomServiceImpl implements SlalomService {
 
                     SlalomResultDTO dto = new SlalomResultDTO();
                     dto.setAthleteId(r.getAthlete().getId());
-                    dto.setAthleteName(r.getAthlete().getName());
+                    dto.setAthleteFirstName(r.getAthlete().getFirstName());
+                    dto.setAthleteLastName(r.getAthlete().getLastName());
                     dto.setCountry(r.getAthlete().getCountry());
 
                     dto.setFirstRunTime(r.getFirstRunTime());
