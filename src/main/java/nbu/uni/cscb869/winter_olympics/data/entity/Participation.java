@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
+import nbu.uni.cscb869.winter_olympics.data.entity.Competition.Competition;
 
 @Entity
 @NoArgsConstructor
@@ -20,14 +21,6 @@ public class Participation extends BaseEntity{
 
     @ManyToOne
     private Competition competition;
-
-    // SlalomCompetition fields
-    private Double firstRunTime;
-    private Double secondRunTime;
-
-    // Biathlon fields
-    private Double skiingTime;
-    private Integer misses;
 
     private boolean didNotFinish = false;
 

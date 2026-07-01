@@ -3,12 +3,11 @@ package nbu.uni.cscb869.winter_olympics.data.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import nbu.uni.cscb869.winter_olympics.data.entity.Competition.Competition;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Set;
 
 @Entity

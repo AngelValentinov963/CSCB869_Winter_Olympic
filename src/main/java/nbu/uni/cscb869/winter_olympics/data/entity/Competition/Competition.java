@@ -1,8 +1,12 @@
-package nbu.uni.cscb869.winter_olympics.data.entity;
+package nbu.uni.cscb869.winter_olympics.data.entity.Competition;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import nbu.uni.cscb869.winter_olympics.data.entity.BaseEntity;
+import nbu.uni.cscb869.winter_olympics.data.entity.Gender;
+import nbu.uni.cscb869.winter_olympics.data.entity.Olympic;
+import nbu.uni.cscb869.winter_olympics.data.entity.Participation;
 
 import java.util.List;
 
@@ -10,7 +14,7 @@ import java.util.List;
 @Setter
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Competition extends BaseEntity{
+public class Competition extends BaseEntity {
     private String name;
 
     private int minAge;

@@ -1,8 +1,7 @@
-package nbu.uni.cscb869.winter_olympics.data.entity;
+package nbu.uni.cscb869.winter_olympics.data.entity.Competition;
 
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity

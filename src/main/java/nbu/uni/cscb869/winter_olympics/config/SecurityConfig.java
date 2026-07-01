@@ -1,7 +1,8 @@
 package nbu.uni.cscb869.winter_olympics.config;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import nbu.uni.cscb869.winter_olympics.service.UserService;
+import org.springframework.boot.security.autoconfigure.actuate.web.reactive.EndpointRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,12 +11,8 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsPasswordService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -24,21 +21,10 @@ import org.springframework.security.web.SecurityFilterChain;
         prePostEnabled = true,
         securedEnabled = true
 )
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class SecurityConfig {
-    private final UserService userService;
 
-    @Bean
-    public InMemoryUserDetailsManager userDetailsInMemory() {
-        UserDetails user1 = User
-                .withUsername("user1")
-                .password("$2a$12$VcsUDlmbLDczCbM2Cm5sAetkRVDSyHHzisAig1B.ypT/GW8XrcTq.")
-                .build();
-        UserDetails user2 = User.withUsername("user2")
-                .password("$2a$12$BUppzBU81H1M.doHy7GMBegE1SoVSbmM5BH1F/sd5MiVti1EXL6IG")
-                .build();
-        return new InMemoryUserDetailsManager(user1, user2);
-    }
+    private final UserService userService;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -46,26 +32,40 @@ public class SecurityConfig {
     }
 
     @Bean
-    public DaoAuthenticationProvider authProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsPasswordService((UserDetailsPasswordService) userService);
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
+    public DaoAuthenticationProvider daoAuthenticationProvider() {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(userService);
+        provider.setPasswordEncoder(passwordEncoder());
+
+        return provider;
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests
-                        (
-                                authz -> authz
-                                        .requestMatchers("/recipes/**").hasAuthority("DOCTOR")
-                                        .requestMatchers("/medicines/**").hasAuthority("SELLER")
-                                        .requestMatchers(HttpMethod.GET, "/medicines").hasAuthority("CUSTOMER")
-                                        .anyRequest().authenticated()
-                        )
-//                .httpBasic(Customizer.withDefaults())
-                .formLogin(Customizer.withDefaults())
-        ;
+
+        http
+                .csrf(csrf -> csrf.disable())
+
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/", "/home").permitAll()
+                        .requestMatchers("/**/*.css", "/**/*.js").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/competitions", "/competitions/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/olympics", "/olympics/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/rankings", "/rankings/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/statistics", "/statistics/**").permitAll()
+                        .requestMatchers("/athletes/**").hasRole("ATHLETE")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .anyRequest().authenticated()
+                )
+
+                .formLogin(form -> form
+                        .defaultSuccessUrl("/", true)
+                )
+
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/login?logout")
+                        .permitAll());
+
         return http.build();
     }
+
 }
