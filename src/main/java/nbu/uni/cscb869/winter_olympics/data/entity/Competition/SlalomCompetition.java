@@ -8,7 +8,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SlalomCompetition extends Competition {
-    // SlalomCompetition specific fields
     private Integer finalistCounts;
-
 }

@@ -1,5 +1,9 @@
 package nbu.uni.cscb869.winter_olympics.service;
 
+import nbu.uni.cscb869.winter_olympics.dto.BiathlonResultDTO;
+
+import java.util.List;
+
 public interface BiathlonService {
 
     void enterSkiTime(Long competitionId,
@@ -10,6 +14,6 @@ public interface BiathlonService {
                      Long athleteId,
                      Integer misses);
 
-    //List<ResultDto> calculateRanking(Long competitionId);
+    List<BiathlonResultDTO> calculateRanking(Long competitionId);
 
 }

@@ -1,17 +1,18 @@
 package nbu.uni.cscb869.winter_olympics.service;
 
+import nbu.uni.cscb869.winter_olympics.dto.SlalomFirstRunDTO;
+import nbu.uni.cscb869.winter_olympics.dto.SlalomResultDTO;
+import nbu.uni.cscb869.winter_olympics.dto.SlalomSecondRunDTO;
+
+import java.util.List;
+
 public interface SlalomService {
 
-    void enterFirstRun(Long competitionId,
-                       Long athleteId,
-                       Double time);
+    void submitFirstRun(SlalomFirstRunDTO dto);
 
-    //List<ResultDto> determineSecondRunParticipants(Long competitionId);
+    List<Long> getSecondRunStartOrder(Long competitionId);
 
-    void enterSecondRun(Long competitionId,
-                        Long athleteId,
-                        Double time);
+    void submitSecondRun(SlalomSecondRunDTO dto);
 
-    //List<ResultDto> calculateFinalRanking(Long competitionId);
-
+    List<SlalomResultDTO> getFinalRanking(Long competitionId);
 }
