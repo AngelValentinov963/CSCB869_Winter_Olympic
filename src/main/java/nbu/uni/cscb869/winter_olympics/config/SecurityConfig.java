@@ -48,13 +48,16 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/home").permitAll()
                         .requestMatchers("/**/*.css", "/**/*.js").permitAll()
+                        .requestMatchers("/athletes/**").permitAll()
+
                         .requestMatchers(HttpMethod.GET, "/competitions", "/competitions/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/olympics", "/olympics/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/rankings", "/rankings/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/statistics", "/statistics/**").permitAll()
-                        .requestMatchers("/athletes/**").hasRole("ATHLETE")
+
+                        //.requestMatchers("/athletes/**").hasRole("ATHLETE")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .anyRequest().authenticated()
+
                 )
 
                 .formLogin(form -> form

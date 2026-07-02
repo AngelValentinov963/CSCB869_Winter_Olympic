@@ -3,6 +3,7 @@ package nbu.uni.cscb869.winter_olympics.data.entity.Login;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import nbu.uni.cscb869.winter_olympics.data.entity.Athlete;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Set;
@@ -23,4 +24,8 @@ public class User implements UserDetails {
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean enabled;
+
+
+    @OneToOne(mappedBy = "user")
+    private Athlete athlete;
 }

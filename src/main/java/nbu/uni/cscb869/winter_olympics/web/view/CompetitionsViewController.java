@@ -7,8 +7,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class CompetitionsViewController {
 
-    @GetMapping("/competitions")
+    @GetMapping("/competitionss")
     public String competitions() {
         return "competitions";
     }
+
+
+
+
 }

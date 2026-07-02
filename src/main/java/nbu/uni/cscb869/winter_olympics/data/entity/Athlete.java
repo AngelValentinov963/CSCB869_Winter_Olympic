@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
 import lombok.*;
+import nbu.uni.cscb869.winter_olympics.data.entity.Login.User;
 
 import java.time.LocalDate;
 
@@ -32,5 +33,9 @@ public class Athlete extends BaseEntity {
     @Past
     private LocalDate birthDate;
 
+
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    private User user;
 
 }

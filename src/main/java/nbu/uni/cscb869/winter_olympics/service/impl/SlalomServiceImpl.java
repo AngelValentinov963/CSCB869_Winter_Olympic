@@ -11,10 +11,11 @@ import nbu.uni.cscb869.winter_olympics.dto.SlalomDTO.SlalomFirstRunDTO;
 import nbu.uni.cscb869.winter_olympics.dto.SlalomDTO.SlalomResultDTO;
 import nbu.uni.cscb869.winter_olympics.dto.SlalomDTO.SlalomSecondRunDTO;
 import nbu.uni.cscb869.winter_olympics.service.SlalomService;
+import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
-
+@Service
 public class SlalomServiceImpl implements SlalomService {
     private final ResultRepository resultRepository;
     private final CompetitionRepository competitionRepository;
