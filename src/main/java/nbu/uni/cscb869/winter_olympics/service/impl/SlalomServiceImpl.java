@@ -57,11 +57,14 @@ public class SlalomServiceImpl implements SlalomService {
 
         int limit = competition.getFinalistCounts();
 
-        return slalomResultRepository.findByCompetitionId(competitionId)
+        List<SlalomResult> finalists = slalomResultRepository.findByCompetitionId(competitionId)
                 .stream()
                 .filter(r -> r.getFirstRunTime() != null)
                 .sorted(Comparator.comparing(SlalomResult::getFirstRunTime))
                 .limit(limit)
+                .toList();
+
+        return finalists.stream()
                 .sorted(Comparator.comparing(SlalomResult::getFirstRunTime).reversed())
                 .map(r -> r.getAthlete().getId())
                 .toList();

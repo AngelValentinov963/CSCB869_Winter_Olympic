@@ -41,32 +41,54 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         http
                 .csrf(csrf -> csrf.disable())
 
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/home").permitAll()
-                        .requestMatchers("/**/*.css", "/**/*.js").permitAll()
-                        .requestMatchers("/athletes/**").permitAll()
-
-                        .requestMatchers(HttpMethod.GET, "/competitions", "/competitions/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/olympics", "/olympics/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/rankings", "/rankings/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/statistics", "/statistics/**").permitAll()
-
-                        //.requestMatchers("/athletes/**").hasRole("ATHLETE")
+                        // 1. Explicitly permit the admin routes ONLY to admins
                         .requestMatchers("/admin/**").hasRole("ADMIN")
 
+                        // 2. Allow EVERYTHING ELSE without login
+                        .anyRequest().permitAll()
                 )
 
                 .formLogin(form -> form
                         .defaultSuccessUrl("/", true)
+                        .permitAll() // Ensure the login page itself is accessible
                 )
 
                 .logout(logout -> logout
                         .logoutSuccessUrl("/login?logout")
                         .permitAll());
+
+
+
+
+        //http
+        //        .csrf(csrf -> csrf.disable())
+//
+        //        .authorizeHttpRequests(auth -> auth
+        //                .requestMatchers("/", "/home").permitAll()
+        //                .requestMatchers("/**/*.css", "/**/*.js").permitAll()
+        //                .requestMatchers("/athletes/**").permitAll()
+//
+        //                .requestMatchers(HttpMethod.GET, "/competitions", "/competitions/**").permitAll()
+        //                .requestMatchers(HttpMethod.GET, "/olympics", "/olympics/**").permitAll()
+        //                .requestMatchers(HttpMethod.GET, "/rankings", "/rankings/**").permitAll()
+        //                .requestMatchers(HttpMethod.GET, "/statistics", "/statistics/**").permitAll()
+//
+        //                //.requestMatchers("/athletes/**").hasRole("ATHLETE")
+        //                .requestMatchers("/admin/**").hasRole("ADMIN")
+//
+        //        )
+//
+        //        .formLogin(form -> form
+        //                .defaultSuccessUrl("/", true)
+        //        )
+//
+        //        .logout(logout -> logout
+        //                .logoutSuccessUrl("/login?logout")
+        //                .permitAll());
 
         return http.build();
     }

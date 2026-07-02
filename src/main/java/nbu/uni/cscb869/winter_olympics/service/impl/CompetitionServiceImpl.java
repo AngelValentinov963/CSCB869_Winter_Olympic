@@ -4,11 +4,13 @@ import nbu.uni.cscb869.winter_olympics.data.entity.Athlete;
 import nbu.uni.cscb869.winter_olympics.data.entity.Competition.Competition;
 import nbu.uni.cscb869.winter_olympics.data.repository.CompetitionRepository;
 import nbu.uni.cscb869.winter_olympics.service.CompetitionService;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 
+@Service
 public class CompetitionServiceImpl implements CompetitionService {
     private CompetitionRepository competitionRepository;
 

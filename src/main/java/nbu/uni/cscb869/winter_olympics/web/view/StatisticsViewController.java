@@ -1,6 +1,6 @@
 package nbu.uni.cscb869.winter_olympics.web.view;
 
-import ch.qos.logback.core.model.Model;
+import org.springframework.ui.Model;
 import nbu.uni.cscb869.winter_olympics.service.ResultService;
 import nbu.uni.cscb869.winter_olympics.service.StatisticsService;
 import org.springframework.stereotype.Controller;
