@@ -1,7 +1,7 @@
 package nbu.uni.cscb869.winter_olympics.web.view;
 
 
-import nbu.uni.cscb869.winter_olympics.dto.AthleteCreateDTO;
+import nbu.uni.cscb869.winter_olympics.dto.Athlete.AthleteCreateDTO;
 import nbu.uni.cscb869.winter_olympics.service.AthleteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

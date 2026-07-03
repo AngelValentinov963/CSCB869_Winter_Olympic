@@ -1,11 +1,7 @@
 package nbu.uni.cscb869.winter_olympics.service;
 
-import jakarta.validation.Valid;
 import nbu.uni.cscb869.winter_olympics.data.entity.Athlete;
-import nbu.uni.cscb869.winter_olympics.data.repository.AthleteRepository;
-import nbu.uni.cscb869.winter_olympics.dto.AthleteCreateDTO;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
+import nbu.uni.cscb869.winter_olympics.dto.Athlete.AthleteCreateDTO;
 
 import java.util.List;
 public interface AthleteService {

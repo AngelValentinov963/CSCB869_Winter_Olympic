@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface CompetitionRepository extends JpaRepository<Competition, Long> {
     //List<Competition> findByCountry(String country);
-    //List<Competition> findByGender(Gender gender);
+    List<Competition> findAllByGender(Gender gender);
     //List<Competition> findByMinimumAgeLessThanEqual(int minimumAge);
 }

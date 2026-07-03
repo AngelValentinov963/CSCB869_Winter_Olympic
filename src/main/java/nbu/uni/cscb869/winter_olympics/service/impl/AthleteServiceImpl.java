@@ -3,7 +3,7 @@ package nbu.uni.cscb869.winter_olympics.service.impl;
 import nbu.uni.cscb869.winter_olympics.data.entity.Athlete;
 import nbu.uni.cscb869.winter_olympics.data.entity.Login.User;
 import nbu.uni.cscb869.winter_olympics.data.repository.AthleteRepository;
-import nbu.uni.cscb869.winter_olympics.dto.AthleteCreateDTO;
+import nbu.uni.cscb869.winter_olympics.dto.Athlete.AthleteCreateDTO;
 import nbu.uni.cscb869.winter_olympics.service.AthleteService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;

@@ -27,6 +27,8 @@ public class Competition extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Gender allowedGender;
 
+
+
     @OneToMany(mappedBy = "competition",fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Participation> participations = new ArrayList<>();
 

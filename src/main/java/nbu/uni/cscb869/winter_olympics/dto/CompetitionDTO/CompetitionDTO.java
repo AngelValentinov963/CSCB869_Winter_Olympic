@@ -1,4 +1,4 @@
-package nbu.uni.cscb869.winter_olympics.dto;
+package nbu.uni.cscb869.winter_olympics.dto.CompetitionDTO;
 
 import lombok.Getter;
 import lombok.Setter;
