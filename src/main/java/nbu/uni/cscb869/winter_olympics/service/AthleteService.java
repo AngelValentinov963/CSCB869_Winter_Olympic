@@ -1,7 +1,7 @@
 package nbu.uni.cscb869.winter_olympics.service;
 
 import nbu.uni.cscb869.winter_olympics.data.entity.Athlete;
-import nbu.uni.cscb869.winter_olympics.dto.Athlete.AthleteCreateDTO;
+import nbu.uni.cscb869.winter_olympics.dto.AthleteDTO.AthleteCreateDTO;
 
 import java.util.List;
 public interface AthleteService {

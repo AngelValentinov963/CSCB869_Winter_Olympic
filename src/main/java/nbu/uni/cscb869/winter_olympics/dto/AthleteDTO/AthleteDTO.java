@@ -1,4 +1,4 @@
-package nbu.uni.cscb869.winter_olympics.dto.Athlete;
+package nbu.uni.cscb869.winter_olympics.dto.AthleteDTO;
 
 import lombok.Data;
 import nbu.uni.cscb869.winter_olympics.data.entity.Gender;

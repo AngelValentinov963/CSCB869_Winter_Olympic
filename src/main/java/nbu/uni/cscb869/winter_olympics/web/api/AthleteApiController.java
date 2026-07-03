@@ -1,7 +1,7 @@
 package nbu.uni.cscb869.winter_olympics.web.api;
 
 import jakarta.validation.Valid;
-import nbu.uni.cscb869.winter_olympics.dto.Athlete.AthleteCreateDTO;
+import nbu.uni.cscb869.winter_olympics.dto.AthleteDTO.AthleteCreateDTO;
 import nbu.uni.cscb869.winter_olympics.service.AthleteService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

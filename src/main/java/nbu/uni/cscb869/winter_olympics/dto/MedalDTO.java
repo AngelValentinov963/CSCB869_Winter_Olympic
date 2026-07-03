@@ -10,6 +10,6 @@ public class MedalDTO {
     private String athleteName;
     private String country;
 
-    private MedalType medal;   // <-- use enum here
+    private MedalType medal;
     private String competitionName;
 }

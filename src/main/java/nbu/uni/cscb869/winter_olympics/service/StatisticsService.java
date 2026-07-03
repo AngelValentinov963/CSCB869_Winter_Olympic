@@ -1,6 +1,6 @@
 package nbu.uni.cscb869.winter_olympics.service;
 
-import nbu.uni.cscb869.winter_olympics.dto.Athlete.AthleteDTO;
+import nbu.uni.cscb869.winter_olympics.dto.AthleteDTO.AthleteDTO;
 import nbu.uni.cscb869.winter_olympics.dto.CompetitionDTO.CompetitionDTO;
 
 import java.util.List;
