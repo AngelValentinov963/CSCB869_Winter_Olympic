@@ -21,6 +21,7 @@ public class ResultServiceImpl implements ResultService {
     public List<SlalomResultDTO> getSlalomResults(Long competitionId) {
 
         List<SlalomResult> results = slalomResultRepository.findByCompetitionId(competitionId);
+        // What if competitionId is null
 
         List<SlalomResultDTO> ranking = results.stream()
                 .filter(r -> r.getFirstRunTime() != null && r.getSecondRunTime() != null)

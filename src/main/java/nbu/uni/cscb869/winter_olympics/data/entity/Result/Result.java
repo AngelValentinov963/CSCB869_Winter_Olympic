@@ -19,5 +19,6 @@ public abstract class Result extends BaseEntity {
     @ManyToOne
     private Competition competition;
 
+    private boolean finished;
     private Double finalTime;
 }
