@@ -1,18 +1,17 @@
 package nbu.uni.cscb869.winter_olympics.service;
 
-import nbu.uni.cscb869.winter_olympics.dto.SlalomDTO.SlalomFirstRunDTO;
-import nbu.uni.cscb869.winter_olympics.dto.SlalomDTO.SlalomResultDTO;
-import nbu.uni.cscb869.winter_olympics.dto.SlalomDTO.SlalomSecondRunDTO;
-import org.springframework.stereotype.Service;
+import nbu.uni.cscb869.winter_olympics.dto.SlalomRunDTO;
+import nbu.uni.cscb869.winter_olympics.dto.SlalomResultDTO;
 
 import java.util.List;
 public interface SlalomService {
 
-    void submitFirstRun(SlalomFirstRunDTO dto);
+    void submitFirstRun(SlalomRunDTO dto);
 
     List<Long> getSecondRunStartOrder(Long competitionId);
 
-    void submitSecondRun(SlalomSecondRunDTO dto);
+    void submitSecondRun(SlalomRunDTO dto);
+
 
     List<SlalomResultDTO> getFinalRanking(Long competitionId);
 }

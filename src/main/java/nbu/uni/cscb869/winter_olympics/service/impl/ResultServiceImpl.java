@@ -2,7 +2,7 @@ package nbu.uni.cscb869.winter_olympics.service.impl;
 
 import nbu.uni.cscb869.winter_olympics.data.entity.Result.SlalomResult;
 import nbu.uni.cscb869.winter_olympics.data.repository.SlalomResultRepository;
-import nbu.uni.cscb869.winter_olympics.dto.SlalomDTO.SlalomResultDTO;
+import nbu.uni.cscb869.winter_olympics.dto.SlalomResultDTO;
 import nbu.uni.cscb869.winter_olympics.service.ResultService;
 import org.springframework.stereotype.Service;
 

@@ -24,5 +24,4 @@ public class Participation extends BaseEntity{
 
     private boolean didNotFinish = false;
 
-
 }

@@ -5,8 +5,8 @@ import nbu.uni.cscb869.winter_olympics.data.entity.Competition.Competition;
 import nbu.uni.cscb869.winter_olympics.data.entity.Result.Result;
 import nbu.uni.cscb869.winter_olympics.data.repository.CompetitionRepository;
 import nbu.uni.cscb869.winter_olympics.data.repository.ResultRepository;
-import nbu.uni.cscb869.winter_olympics.dto.AthleteDTO.AthleteDTO;
-import nbu.uni.cscb869.winter_olympics.dto.CompetitionDTO.CompetitionDTO;
+import nbu.uni.cscb869.winter_olympics.dto.AthleteDTO;
+import nbu.uni.cscb869.winter_olympics.dto.CompetitionDTO;
 import nbu.uni.cscb869.winter_olympics.service.StatisticsService;
 import org.springframework.stereotype.Service;
 

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
+
 @Repository
 public interface AthleteRepository extends JpaRepository<Athlete, Long> {
     List<Athlete> findByCountry(String country);
@@ -14,4 +16,6 @@ public interface AthleteRepository extends JpaRepository<Athlete, Long> {
     List<Athlete> findByGender(Gender gender);
 
     List<Athlete> findByBirthDateBefore(LocalDate date);
+
+    Optional<Athlete> findByKeycloakId(String keycloakId);
 }

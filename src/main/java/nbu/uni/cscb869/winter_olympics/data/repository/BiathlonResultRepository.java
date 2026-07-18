@@ -10,6 +10,5 @@ public interface BiathlonResultRepository extends JpaRepository<BiathlonResult, 
     Optional<BiathlonResult> findByAthleteId(Integer athleteId);
     Optional<BiathlonResult> findByCompetitionIdAndAthleteId(Long competitionId,
                                                              Long athleteId);
-
     List<BiathlonResult> findByCompetitionId(Long competitionId);
 }

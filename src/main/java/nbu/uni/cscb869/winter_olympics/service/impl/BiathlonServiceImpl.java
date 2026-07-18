@@ -3,8 +3,8 @@ package nbu.uni.cscb869.winter_olympics.service.impl;
 import lombok.RequiredArgsConstructor;
 import nbu.uni.cscb869.winter_olympics.data.entity.Result.BiathlonResult;
 import nbu.uni.cscb869.winter_olympics.data.repository.BiathlonResultRepository;
-import nbu.uni.cscb869.winter_olympics.dto.BiathlonDTO.BiathlonResultDTO;
-import nbu.uni.cscb869.winter_olympics.dto.BiathlonDTO.BiathlonInputDTO;
+import nbu.uni.cscb869.winter_olympics.dto.BiathlonResultDTO;
+import nbu.uni.cscb869.winter_olympics.dto.BiathlonInputDTO;
 import nbu.uni.cscb869.winter_olympics.service.BiathlonService;
 import org.springframework.stereotype.Service;
 

@@ -7,9 +7,8 @@ import nbu.uni.cscb869.winter_olympics.data.repository.AthleteRepository;
 import nbu.uni.cscb869.winter_olympics.data.repository.CompetitionRepository;
 import nbu.uni.cscb869.winter_olympics.data.repository.ResultRepository;
 import nbu.uni.cscb869.winter_olympics.data.repository.SlalomResultRepository;
-import nbu.uni.cscb869.winter_olympics.dto.SlalomDTO.SlalomFirstRunDTO;
-import nbu.uni.cscb869.winter_olympics.dto.SlalomDTO.SlalomResultDTO;
-import nbu.uni.cscb869.winter_olympics.dto.SlalomDTO.SlalomSecondRunDTO;
+import nbu.uni.cscb869.winter_olympics.dto.SlalomRunDTO;
+import nbu.uni.cscb869.winter_olympics.dto.SlalomResultDTO;
 import nbu.uni.cscb869.winter_olympics.service.SlalomService;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +32,7 @@ public class SlalomServiceImpl implements SlalomService {
     }
 
     @Override
-    public void submitFirstRun(SlalomFirstRunDTO dto) {
+    public void submitFirstRun(SlalomRunDTO dto) {
 
         SlalomResult result = slalomResultRepository
                 .findByCompetitionIdAndAthleteId(dto.getCompetitionId(), dto.getAthleteId())
@@ -71,13 +70,13 @@ public class SlalomServiceImpl implements SlalomService {
     }
 
     @Override
-    public void submitSecondRun(SlalomSecondRunDTO dto) {
+    public void submitSecondRun(SlalomRunDTO dto) {
 
         SlalomResult result = slalomResultRepository
                 .findByCompetitionIdAndAthleteId(dto.getCompetitionId(), dto.getAthleteId())
                 .orElseThrow();
 
-        result.setSecondRunTime(dto.getSecondRunTime());
+        result.setSecondRunTime(dto.getFirstRunTime());
 
         slalomResultRepository.save(result);
     }

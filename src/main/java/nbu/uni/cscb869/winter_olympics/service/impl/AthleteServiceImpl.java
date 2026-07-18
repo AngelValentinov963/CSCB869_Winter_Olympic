@@ -1,17 +1,18 @@
 package nbu.uni.cscb869.winter_olympics.service.impl;
 
 import nbu.uni.cscb869.winter_olympics.data.entity.Athlete;
-import nbu.uni.cscb869.winter_olympics.data.entity.Login.User;
 import nbu.uni.cscb869.winter_olympics.data.repository.AthleteRepository;
-import nbu.uni.cscb869.winter_olympics.dto.AthleteDTO.AthleteCreateDTO;
+import nbu.uni.cscb869.winter_olympics.dto.AthleteCreateDTO;
 import nbu.uni.cscb869.winter_olympics.service.AthleteService;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class AthleteServiceImpl implements AthleteService {
+
     private final AthleteRepository athleteRepository;
 
     public AthleteServiceImpl(AthleteRepository athleteRepository) {
@@ -19,29 +20,12 @@ public class AthleteServiceImpl implements AthleteService {
     }
 
     @Override
-    public void registerAthlete(AthleteCreateDTO dto) {
+    public Athlete create(AthleteCreateDTO dto, Authentication authentication) {
 
-        User user = (User) SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getPrincipal();
+        Jwt jwt = (Jwt) authentication.getPrincipal();
 
-        Athlete athlete = Athlete.builder()
-                .firstName(dto.getFirstName())
-                .lastName(dto.getLastName())
-                .country(dto.getCountry())
-                .gender(dto.getGender())
-                .birthDate(dto.getBirthDate())
-                .user(user)
-                .build();
+        String keycloakId = jwt.getSubject();
 
-        athleteRepository.save(athlete);
-    }
-
-    public Athlete create(AthleteCreateDTO dto) {
-
-        User user = (User) SecurityContextHolder.getContext()
-                .getAuthentication()
-                .getPrincipal();
 
         Athlete athlete = Athlete.builder()
                 .firstName(dto.getFirstName())
@@ -49,35 +33,39 @@ public class AthleteServiceImpl implements AthleteService {
                 .country(dto.getCountry())
                 .gender(dto.getGender())
                 .birthDate(dto.getBirthDate())
-                .user(user)
+                .keycloakId(keycloakId)
                 .build();
 
-        athleteRepository.save(athlete);
-        return athlete;
+
+        return athleteRepository.save(athlete);
     }
 
     @Override
     public Athlete update(Long id, Athlete athlete) {
-        return null;
+        return athleteRepository.save(athlete);
     }
+
 
     @Override
     public void delete(Long id) {
-
+        athleteRepository.deleteById(id);
     }
+
 
     @Override
     public Athlete findById(Long id) {
-        return null;
+        return athleteRepository.findById(id).orElse(null);
     }
+
 
     @Override
     public List<Athlete> findAll() {
-        return List.of();
+        return athleteRepository.findAll();
     }
+
 
     @Override
     public List<Athlete> findByCountry(String country) {
-        return List.of();
+        return athleteRepository.findByCountry(country);
     }
 }

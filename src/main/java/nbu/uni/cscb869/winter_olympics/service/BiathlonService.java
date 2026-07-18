@@ -1,7 +1,7 @@
 package nbu.uni.cscb869.winter_olympics.service;
 
-import nbu.uni.cscb869.winter_olympics.dto.BiathlonDTO.BiathlonResultDTO;
-import nbu.uni.cscb869.winter_olympics.dto.BiathlonDTO.BiathlonInputDTO;
+import nbu.uni.cscb869.winter_olympics.dto.BiathlonResultDTO;
+import nbu.uni.cscb869.winter_olympics.dto.BiathlonInputDTO;
 
 import java.util.List;
 public interface BiathlonService {
