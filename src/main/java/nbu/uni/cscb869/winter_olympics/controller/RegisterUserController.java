@@ -14,6 +14,7 @@ public class RegisterUserController {
     @PostMapping
     public ResponseEntity<String> registerUser(@RequestBody RegisterUserDTO registerUserDTO) {
 
+
         return ResponseEntity.ok("User is successfully registered in KeyCloak.");
     }
 }
