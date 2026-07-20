@@ -1,5 +1,6 @@
 package nbu.uni.cscb869.winter_olympics.service.impl;
 
+import jakarta.ws.rs.core.Response;
 import lombok.RequiredArgsConstructor;
 import nbu.uni.cscb869.winter_olympics.dto.RegisterUserDTO;
 import nbu.uni.cscb869.winter_olympics.service.KeyCloakService;
@@ -21,7 +22,7 @@ public class KeyCloakServiceImpl implements KeyCloakService {
     private static final String REALM = "winter-olympics-application-realm";
 
     @Override
-    public void createUser(RegisterUserDTO dto) {
+    public String createUser(RegisterUserDTO dto) {
 
         CredentialRepresentation credential = new CredentialRepresentation();
         credential.setType(CredentialRepresentation.PASSWORD);
@@ -34,9 +35,16 @@ public class KeyCloakServiceImpl implements KeyCloakService {
         user.setEnabled(true);
         user.setCredentials(List.of(credential));
 
-        keycloak.realm(REALM)
+        Response response = keycloak.realm(REALM)
                 .users()
                 .create(user);
+
+        if (response.getStatus() != 201) {
+            throw new RuntimeException("Failed to create user. Status: " + response.getStatus());
+        }
+
+        String location = response.getHeaderString("Location");
+        return location.substring(location.lastIndexOf("/") + 1);
     }
 
     @Override
