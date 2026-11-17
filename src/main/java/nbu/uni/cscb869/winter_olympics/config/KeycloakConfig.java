@@ -17,7 +17,7 @@ public class KeycloakConfig {
                 .realm("master")
                 .clientId("admin-cli")
                 .username("admin")
-                .password("admin")
+                .password("root")
                 .grantType(OAuth2Constants.PASSWORD)
                 .build();
     }

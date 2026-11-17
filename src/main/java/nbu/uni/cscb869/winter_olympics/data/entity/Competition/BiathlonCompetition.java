@@ -1,14 +1,19 @@
 package nbu.uni.cscb869.winter_olympics.data.entity.Competition;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
+import jakarta.validation.constraints.Min;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Getter
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class BiathlonCompetition extends Competition {
 
+    @Min(1)
+    @Column(nullable = false)
     private Integer laps;
-
 }

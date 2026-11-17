@@ -2,9 +2,9 @@ package nbu.uni.cscb869.winter_olympics.service;
 
 import nbu.uni.cscb869.winter_olympics.data.entity.Athlete;
 import nbu.uni.cscb869.winter_olympics.data.entity.Competition.Competition;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 public interface CompetitionService {
 
     Competition create(Competition competition);
